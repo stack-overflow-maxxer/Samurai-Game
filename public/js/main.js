@@ -1,11 +1,12 @@
 import { Player } from './player.js';
 import { InputHandler } from './input.js';
+import { World } from './world.js';
 
 window.addEventListener('load', function() {
     const canvas = document.getElementById('canvas1');
     const ctx = canvas.getContext('2d');
-    canvas.width = 500;
-    canvas.height = 500;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
     class Game { 
         constructor(canvas, canvasWidth, canvasHeight) {
@@ -14,14 +15,17 @@ window.addEventListener('load', function() {
             this.canvas.width = canvasWidth;
             this.canvas.height = canvasHeight;
             this.player = new Player(this);
-            this.input = new InputHandler();
+            this.input = new InputHandler(this);
+            this.debug = false;
+            this.world = new World(this);
         }
         update() {
-            this.player.update(this.input.keys);
+            this.player.update(this.input);
         }
            
         draw() {
-            this.player.draw(this.ctx);
+            this.world.draw(this.ctx);  
+            this.player.draw(this.ctx); 
         }
     }
 
