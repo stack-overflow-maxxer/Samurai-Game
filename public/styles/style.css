@@ -13,7 +13,7 @@ body {
     max-height: 100%;
 }
 
-#player, #playerRunning, #playerAttack, #playerJump, #sky, #ground { 
+#player, #playerRunning, #playerAttack, #playerJump, #sky, #ground, #myGrass { 
     display: none;
 }
 

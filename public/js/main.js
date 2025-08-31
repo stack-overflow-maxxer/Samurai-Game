@@ -16,11 +16,15 @@ window.addEventListener('load', function() {
             this.canvas.height = canvasHeight;
             this.player = new Player(this);
             this.input = new InputHandler(this);
-            this.debug = false;
+            this.debug = true;
             this.world = new World(this);
+            this.lastTime = 0;
         }
-        update() {
+        update(timeStamp) {
+            const deltaTime = timeStamp - this.lastTime;
+            this.lastTime = timeStamp;
             this.player.update(this.input);
+            this.world.update(deltaTime);
         }
            
         draw() {
@@ -32,12 +36,12 @@ window.addEventListener('load', function() {
     const game = new Game(canvas, canvas.width, canvas.height);
     console.log(game);
 
-    function animate() {
+    function animate(timeStamp) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        game.update();
+        game.update(timeStamp);
         game.draw();
         requestAnimationFrame(animate);
     }
-    animate();
+    animate(0);
 });
 

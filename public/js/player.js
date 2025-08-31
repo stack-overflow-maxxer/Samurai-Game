@@ -5,14 +5,14 @@ export class Player {
     constructor(game) {
         this.game = game;
         // Display size (for rendering)
-        this.width = 220;
-        this.height = 180;
+        this.width = 380;
+        this.height = 300;
         
         // Hitbox size (for collision detection)
-        this.hitboxWidth = 80;
+        this.hitboxWidth = 75;
         this.hitboxHeight = 140;
-        this.hitboxOffsetX = 70; // Offset to center hitbox within sprite
-        this.hitboxOffsetY = 40;
+        this.hitboxOffsetX = 150; // Offset to center hitbox within sprite
+        this.hitboxOffsetY = 140;
         
 
 
@@ -26,21 +26,21 @@ export class Player {
         this.flipX = false; 
 
         this.speed = 0;
-        this.maxSpeed = 8;
+        this.maxSpeed = 12;
 
         this.spriteWidth = 106;
         this.spriteHeight = 84;
 
 
         this.x = 40;
-        this.y = this.game.canvas.height - this.height-30;
+        this.y = this.game.canvas.height - this.height-100;
         this.vy = 0;
         this.weight = 1;
 
 
         this.frameX = 0; 
         this.maxFrame = 13;
-        this.fps = 60;
+        this.fps = 120;
         this.frameTimer = 0;
         this.frameInterval = 1000 / this.fps; 
 
@@ -123,7 +123,7 @@ export class Player {
         context.restore();
     }
     onGround() { 
-        return this.y + this.hitboxOffsetY + this.hitboxHeight >= this.game.canvas.height-30;
+        return this.y + this.hitboxHeight >= this.game.canvas.height-180;
     }
     setState(state) { 
         this.currentState = this.states[state];
