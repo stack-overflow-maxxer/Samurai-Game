@@ -22,7 +22,6 @@ export class Idle extends State {
         this.player.maxFrame = 13;
         this.player.speed = 0;
         this.player.frameX = 0;
-        this.player.flipX = false;
     }
     handleInput(input) { 
         if(input.keys.includes('d')) { 
@@ -52,22 +51,23 @@ export class Running extends State {
         this.player.flipX = false;
     }
         handleInput(input) { 
-        console.log(input.keys);
         
-        // Check for jump first - this allows jumping while running
+      
         if(input.keys.includes(' ') && this.player.onGround()) { 
             this.player.setState(playerStates.JUMP);
             return; // Exit early since we're changing states
         }
-        
+        if (input.keys.includes('e')) {
+            this.player.setState(playerStates.ATTACK);
+            return;
+        }
+
         if(input.keys.includes('d')) {
             this.player.speed = this.player.maxSpeed;
             this.player.flipX = false;
         } else if(input.keys.includes('a')) {
             this.player.speed = -this.player.maxSpeed;
             this.player.flipX = true;
-        } else if(input.keys.includes('e')) { 
-            this.player.setState(playerStates.ATTACK);
         } else {
             // No movement keys pressed, go back to idle
             this.player.setState(playerStates.IDLE);
@@ -126,18 +126,33 @@ export class Attack extends State {
         this.player.currentImage = this.player.attackImage;
         this.player.maxFrame = 4; 
         this.player.frameX = 0;
-        this.player.speed = 0; 
+        this.player.attack1 = true;
+       
+        if (this.player.flipX) {   
+    
+            this.player.speed = -0.5; 
+        } else { 
+           
+            this.player.speed = 0.5; 
+        }
     }
     handleInput(input) { 
-
         if(this.player.frameX >= this.player.maxFrame) {
+            setTimeout(() => {
+           this.player.attack1 = false;
             if(input.keys.includes('d') || input.keys.includes('a')) { 
                 this.player.setState(playerStates.RUNNING);
             } else if(input.keys.includes(' ') && this.player.onGround()) { 
                 this.player.setState(playerStates.JUMP);
             } else {
-                this.player.setState(playerStates.IDLE);
-            }
+                if (this.player.flipX) {
+                    this.player.flipX = true;
+                } else {
+                    this.player.flipX = false;
+                }
+                    this.player.setState(playerStates.IDLE);
+                }
+            }, 100);
         }
     }
 }

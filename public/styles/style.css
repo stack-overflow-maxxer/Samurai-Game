@@ -13,7 +13,7 @@ body {
     max-height: 100%;
 }
 
-#player, #playerRunning, #playerAttack, #playerJump, #sky, #ground, #myGrass { 
+#player, #playerRunning, #playerAttack, #playerJump, #sky, #ground, #myGrass, #skeleton, #skeletonIdle, #skeletonWalk, #skeletonAttack, #skeletonDeath, #skeletonHurt { 
     display: none;
 }
 

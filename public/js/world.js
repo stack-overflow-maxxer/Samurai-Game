@@ -6,6 +6,7 @@ class World {
         this.myGrass = document.getElementById('myGrass');
         this.grassFrame = 0;
         this.grassWidth = 35;
+        this.groundHeight = 100;
         this.maxFrame = 5;
         this.fps = 2; // Slower animation for grass swaying effect
         this.frameTimer = 0;
@@ -24,13 +25,13 @@ class World {
     }
     
     draw(context) {
-        // Draw sky
+      
         context.drawImage(this.sky, 0, -50, this.game.canvas.width, this.game.canvas.height);
         
-        // Draw ground
+  
         context.drawImage(this.ground, 0, this.game.canvas.height - 50, this.game.canvas.width, 100);
         
-        // Draw animated grass across the ground
+ 
         for(let i = 0; i < this.game.canvas.width; i += this.grassWidth-2) {
             context.drawImage(
                 this.myGrass, 
