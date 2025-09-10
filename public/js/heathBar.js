@@ -25,14 +25,16 @@ class HeathBar {
         ctx.fillRect(this.x, this.y, this.width * (this.currentHealth / this.maxHealth), this.height);
     }
     update(currentHealth,posx,posy) {
-        if (this.type == 'enemy') {
-            this.currentHealth = currentHealth;
-        } else {
-            this.currentHealth = currentHealth;
-        }
+        if (currentHealth != this.currentHealth) { 
+            this.height = this.height + 0.5;
+            setTimeout(() => {
+                this.height = this.height - 0.5;
+            }, 100);
+        } 
         this.currentHealth = currentHealth;
         this.x = posx;
         this.y = posy;
+   
     }
 }
 

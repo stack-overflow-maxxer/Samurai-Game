@@ -65,7 +65,7 @@ export class Skeleton extends Enemy {
         this.hitboxX = 300;
         this.hitboxY = this.game.canvas.height - 25 - this.hitboxHeight; 
         
-        this.health = 50;
+        this.health = 100;
         this.healthBar = new HeathBar(this.hitboxX, this.hitboxY - 20, this.hitboxWidth, 7, 100, this.health,'enemy');
 
         this.maxFrame = 9

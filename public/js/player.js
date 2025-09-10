@@ -45,11 +45,12 @@ export class Player {
         this.currentState = this.states[0];
         this.currentState.enter();
         
-        this.currentHealth = 50;
+        this.currentHealth = 100;
         this.maxHealth = 100;
         this.heathBar = new HeathBar(this.hitboxX, this.hitboxY, this.hitboxWidth, 7, this.maxHealth, this.currentHealth);
 
         this.attack1 = false;
+        this.damage = 1;
     }
     
     update(input) { 
@@ -172,7 +173,7 @@ export class Player {
                 enemy.hitboxY < this.hitboxY + this.hitboxHeight && 
                 enemy.hitboxY + enemy.hitboxHeight > this.hitboxY) {
                 if (this.attack1) { 
-                    enemy.health -= 0.5;
+                    enemy.health -= this.damage;
                     if (enemy.health <= 0) { 
                         enemy.death = true;
                     }
